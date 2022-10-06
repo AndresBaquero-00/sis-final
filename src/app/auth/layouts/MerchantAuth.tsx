@@ -1,3 +1,7 @@
+import { Apple, Google } from "@mui/icons-material";
+import { Button } from "@mui/material";
+
+import { Separator } from "../../../components";
 
 type Props = {
     title: string;
@@ -26,6 +30,15 @@ export const MerchantAuth = ({ title, bannerImage, bannerInfo, children }: Props
                         <h2 className="form__title">
                             {title}
                         </h2>
+                        <div className="form__auth-with">
+                            <Button className="button--google" startIcon={<Google />}>
+                                Continuar con Google
+                            </Button>
+                            <Button className="button--apple" startIcon={<Apple />}>
+                                Continuar con Apple
+                            </Button>
+                        </div>
+                        <Separator />
                         <div className="form__content">
                             {children}
                         </div>

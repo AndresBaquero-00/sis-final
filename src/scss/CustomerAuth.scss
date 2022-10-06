@@ -55,24 +55,6 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-
-            .button--google,
-            .button--apple {
-                border-radius: $border-radius;
-                text-transform: none;
-                padding: 10px 0;
-                font-size: 15px;
-            }
-
-            .button--google {
-                background-color: rgb(66, 133, 246);
-                color: white;
-            }
-
-            .button--apple {
-                background-color: black;
-                color: white;
-            }
         }
 
         .content__form {

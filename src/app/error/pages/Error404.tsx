@@ -1,7 +1,12 @@
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 import { GirlDoubting } from "../../../assets/images";
 
 export const Error404 = () => {
+
+    const navigate = useNavigate();
+
     return (
         <main className="error404">
             <div className="error404__content">
@@ -30,13 +35,23 @@ export const Error404 = () => {
                         <path fill="#00AB55" d="M174.965 264.592c0-4.133-1.492-5.625-5.637-5.625h-11.373v-66.611c0-4.476-1.492-5.637-5.638-5.637h-9.172a9.867 9.867 0 00-7.948 3.974l-55.03 68.274a11.006 11.006 0 00-1.957 6.787v5.968c0 4.145 1.492 5.637 5.625 5.637h54.676v21.707c0 4.133 1.492 5.625 5.625 5.625h8.12c4.146 0 5.638-1.492 5.638-5.625v-21.707h11.434c4.414 0 5.637-1.492 5.637-5.637v-7.13zm-72.42-5.625l35.966-44.415v44.415h-35.966zM411.607 264.592c0-4.133-1.492-5.625-5.638-5.625h-11.421v-66.611c0-4.476-1.492-5.637-5.638-5.637h-9.11a9.869 9.869 0 00-7.949 3.974l-55.03 68.274a10.998 10.998 0 00-1.981 6.787v5.968c0 4.145 1.491 5.637 5.625 5.637h54.688v21.707c0 4.133 1.491 5.625 5.625 5.625h8.12c4.145 0 5.637-1.492 5.637-5.625v-21.707h11.434c4.476 0 5.638-1.492 5.638-5.637v-7.13zm-72.42-5.625l35.966-44.415v44.415h-35.966z"></path>
                     </svg>
                 </div>
-                <Button
-                    className="button--global button--go-home"
-                    size="large"
-                    href="/"
-                >
-                    Go to Home
-                </Button>
+                <div className="error404__actions">
+                    <Button
+                        className="button--global button--go-home"
+                        size="large"
+                        onClick={() => navigate(-1)}
+                    >
+                        Go Back
+                    </Button>
+
+                    <Button
+                        className="button--global button--go-home"
+                        size="large"
+                        href="/"
+                    >
+                        Go to Home
+                    </Button>
+                </div>
             </div>
         </main>
     )

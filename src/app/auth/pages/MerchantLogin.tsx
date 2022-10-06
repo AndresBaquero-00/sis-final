@@ -4,12 +4,7 @@ import { Button, TextField } from "@mui/material";
 import { MerchantAuth } from "../layouts";
 
 export const MerchantLogin = () => {
-    const sendData = () => {
-        const navigate = document.createElement('a');
-        navigate.href = '/merchant/dashboard';
-
-        navigate.click();
-    }
+    const onSubmit = () => {}
 
     return (
         <MerchantAuth
@@ -41,7 +36,8 @@ export const MerchantLogin = () => {
                 variant="contained"
                 size="large"
                 className="button--global"
-                onClick={sendData}
+                onClick={onSubmit}
+                href="/merchant/dashboard"
                 sx={{ marginTop: '25px', borderRadius: '10px' }}
             >
                 Enviar

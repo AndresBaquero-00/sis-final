@@ -29,10 +29,19 @@
             margin: 30px 0;
         }
 
-        .button--go-home {
-            width: 30%;
-            margin-top: 40px;
-            border-radius: 10px;
+        .error404__actions {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+            .button--go-back,
+            .button--go-home {
+                width: 30%;
+                margin-top: 40px;
+                border-radius: 10px;
+            }
         }
     }
 }
