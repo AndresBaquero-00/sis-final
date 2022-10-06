@@ -1,0 +1,96 @@
+@import 'src/variables.scss';
+
+.customer-auth {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+
+    .customer-auth__banner {
+        box-shadow: rgb(145 158 171 / 20%) 0px 0px 2px 0px, rgb(145 158 171 / 12%) 0px 12px 24px -4px;
+        border-radius: 17px;
+        margin: 16px 0px 16px 16px;
+        color: rgb(33, 43, 54);
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-direction: column;
+        position: relative;
+
+        .button--back {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: inherit;
+        }
+
+        .banner__title {
+            padding: 0 40px;
+            width: 500px;
+        }
+
+        .banner__image {
+            width: 500px;
+        }
+    }
+
+    .customer-auth__content {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .content__container {
+            width: 500px;
+        }
+
+        .content__title {
+            padding: 40px 0 20px;
+            font-weight: 700;
+            box-sizing: border-box;
+            font-size: 35px;
+        }
+
+        .content__auth-with {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .button--google,
+            .button--apple {
+                border-radius: 10px;
+                text-transform: none;
+                padding: 10px 0;
+                font-size: 15px;
+            }
+
+            .button--google {
+                background-color: rgb(66, 133, 246);
+                color: white;
+            }
+
+            .button--apple {
+                background-color: black;
+                color: white;
+            }
+        }
+
+        .content__form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .content__notAction {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px 0;
+
+            a {
+                text-decoration: none;
+                color: $main-color;
+            }
+        }
+    }
+}
