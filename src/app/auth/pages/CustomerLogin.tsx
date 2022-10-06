@@ -1,5 +1,4 @@
 import { Button, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
 
 import { useForm } from "../../../hooks";
 import { CustomerAuth } from "../layouts";
@@ -22,7 +21,7 @@ export const CustomerLogin = () => {
             notAction={
                 <span>
                     ¿Aún no te has registrado? &nbsp;
-                    <Link to="/customer/signin">Regístrate aquí.</Link>
+                    <a href="/customer/signin">Regístrate aquí.</a>
                 </span>
             }
         >

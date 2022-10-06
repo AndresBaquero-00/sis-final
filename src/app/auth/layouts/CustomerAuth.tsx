@@ -14,8 +14,8 @@ type Props = {
 export const CustomerAuth = ({ title, bannerTitle, bannerImage, notAction, children }: Props) => {
 
     return (
-        <div className="customer-auth">
-            <div className="customer-auth__banner">
+        <main className="customer-auth">
+            <section className="customer-auth__banner">
                 <IconButton
                     size="large"
                     className="button--back"
@@ -27,8 +27,8 @@ export const CustomerAuth = ({ title, bannerTitle, bannerImage, notAction, child
                     {bannerTitle}
                 </h1>
                 <img className="banner__image" src={bannerImage} alt="Banner" />
-            </div>
-            <main className="customer-auth__content">
+            </section>
+            <section className="customer-auth__content">
                 <div className="content__container">
                     <h1 className="content__title">
                         {title}
@@ -49,7 +49,7 @@ export const CustomerAuth = ({ title, bannerTitle, bannerImage, notAction, child
                         {notAction}
                     </div>
                 </div>
-            </main>
-        </div>
+            </section>
+        </main>
     )
 }

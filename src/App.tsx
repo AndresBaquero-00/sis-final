@@ -2,6 +2,11 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Error404 } from "./app/error/pages";
 import { CustomerRoutes, MerchantRoutes } from "./routes";
 
+import "swiper/css";
+import 'swiper/css/bundle';
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 export const App = () => {
     return (
         <BrowserRouter>

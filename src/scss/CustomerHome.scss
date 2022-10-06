@@ -1,0 +1,195 @@
+@import 'src/variables.scss';
+
+.customer-home {
+    width: 100%;
+    height: 100%;
+
+    .customer-home__header {
+        position: relative;
+
+        .header__content {
+            position: absolute;
+            z-index: 9999;
+            background-color: transparent;
+            width: 100%;
+            height: 100px;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            padding: 0 80px;
+
+            .header__logo {
+                width: 90px;
+                height: 90px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 80%;
+            }
+
+            .header__actions {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+
+                .button--login,
+                .button--signin {
+                    border-radius: 50px;
+                    padding: 10px 18px;
+                    text-transform: capitalize;
+                    font-size: 15px;
+                    font-weight: 600;
+                }
+
+                .button--login {
+                    background-color: white;
+                    color: black;
+
+                    svg {
+                        font-size: 30px;
+                    }
+                }
+
+                .button--signin {
+                    background-color: $main-color;
+                    color: white;
+                }
+            }
+        }
+    }
+
+
+    .customer-home__content {
+        width: 100%;
+        background-color: #F7F8F9;
+
+        .content__topSection {
+            position: relative;
+
+            .topSection__bg-image {
+                width: 100%;
+                height: 100vh;
+                background-size: cover;
+                background-position: center;
+            }
+
+            .topSection__info {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                .topSection__info-content {
+                    width: 70%;
+                    padding: 0 100px;
+                    box-sizing: border-box;
+
+                    .topSection__info-title {
+                        color: white;
+                        font-size: 75px;
+                        font-weight: 900;
+                    }
+
+                    .topSection__info-text {
+                        color: #f1f1f1;
+                        font-size: 30px;
+                        display: block;
+                        margin-top: 20px;
+                    }
+
+                    .topSection__info-action {
+                        margin-top: 80px;
+
+                        .button--order-now {
+                            width: 30%;
+                            border-radius: 50px !important;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .content__cardsSection {
+            width: 100%;
+            margin-top: 30px;
+            padding: 60px 100px;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            background-color: white;
+
+            .custom-card {
+                flex: 1;
+                border-radius: 10px;
+                box-shadow: none;
+                border: 1px solid rgb(230, 235, 241);
+                max-width: 450px;
+
+                .custom-card__content,
+                .custom-card__actions {
+                    padding: 10px 25px;
+                }
+
+                .custom-card__actions {
+                    margin-bottom: 20px;
+                }
+
+                .custom-card__title {
+                    text-align: center;
+                    font-size: 23px;
+                    font-weight: 700;
+                    color: #1f1d24;
+                }
+
+                .custom-card__desc {
+                    text-align: justify;
+                    margin-top: 13px;
+                    color: rgb(106, 105, 110);
+                }
+
+                .custom-card__action {
+                    width: 100%;
+                    background-color: rgba($color: $main-color, $alpha: 10%) !important;
+                    color: $main-color !important;
+                    font-weight: 800 !important;
+                    box-shadow: none !important;
+
+                    &:hover {
+                        color: white !important;
+                        background-color: $main-color !important;
+                    }
+                }
+            }
+        }
+
+        .content__citiesSection {
+            padding: 60px 100px;
+            width: 100%;
+            margin-top: 30px;
+            background-color: white;
+
+            .citiesSection__title {
+                margin-bottom: 50px;
+                font-size: 40px;
+                font-weight: 600;
+            }
+
+            .citiesSection__cities {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+
+                .citiesSection__cities-name {
+                    font-size: 25px;
+                    font-weight: 400;
+                    color: rgb(106, 105, 110);
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

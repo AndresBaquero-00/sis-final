@@ -1,0 +1,27 @@
+footer {
+    width: 100%;
+    background-color: #111;
+    height: 200px;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    .footer__legal,
+    .footer__social {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        a,
+        span {
+            color: #c4c4c4;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
