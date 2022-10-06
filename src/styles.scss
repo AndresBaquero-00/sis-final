@@ -4,16 +4,60 @@
 @import 'src/variables.scss';
 
 * {
-    font-family: 'Nunito';
+    font-family: 'Nunito' !important;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #11171a;
+}
+
+#root {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.MuiTextField-root {
+    & label.Mui-focused {
+        color: $main-color;
+    }
+
+    & .MuiInput-underline:after {
+        border-bottom-color: $main-color;
+    }
+    
+    & .MuiOutlinedInput-root {
+
+        & fieldset {
+            border-radius: $border-radius;
+        }
+
+        &.Mui-focused fieldset {
+            border-color: $main-color;
+        }
+    }
 }
 
 .button--global {
     background-color: $main-color !important;
-    box-shadow: 0 8px 16px 0 rgba($color: $main-color, $alpha: 24%) !important;
-    padding: 12px 20px !important;
-    font-size: 18px !important;
+    box-shadow: 0 10px 15px 0 rgba($color: $main-color, $alpha: 25%) !important;
+    padding: 10px 20px !important;
+    font-size: 15px !important;
     color: white !important;
     text-transform: capitalize !important;
 }

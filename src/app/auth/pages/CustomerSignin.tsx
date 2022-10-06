@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../../hooks";
 import { CustomerAuth } from "../layouts";
 
-export const CustomerLogin = () => {
+export const CustomerSignin = () => {
     const { formState, onInputChange } = useForm({
+        nombre: '',
+        apellido: '',
         email: '',
         password: ''
     });
@@ -16,25 +18,29 @@ export const CustomerLogin = () => {
 
     return (
         <CustomerAuth
-            title="Inicia Sesión"
-            bannerImage="https://minimals.cc/assets/illustrations/illustration_login.png"
-            bannerTitle="Hi, Welcome Back!"
+            title="Regístrate"
+            bannerImage="https://minimals.cc/assets/illustrations/illustration_register.png"
+            bannerTitle="¡Manage the job more effectively!"
             notAction={
                 <span>
-                    ¿Aún no te has registrado? &nbsp;
-                    <Link to="/customer/signin">Regístrate aquí.</Link>
+                    ¿Tienes una cuenta? &nbsp;
+                    <Link to="/customer/login">Inicia sesión aquí.</Link>
                 </span>
             }
         >
+            <TextField onChange={onInputChange} value={formState.nombre} 
+                name="nombre" label="Nombre" type="text" variant="outlined" />
+            <TextField onChange={onInputChange} value={formState.apellido} 
+                name="apellido" label="Apellido" type="text" variant="outlined" />
             <TextField onChange={onInputChange} value={formState.email} 
-                name="email" label="Correo Electrónico" type="email" variant="outlined" />
+                name="email" label="Email" type="email" variant="outlined" />
             <TextField onChange={onInputChange} value={formState.password} 
                 name="password" label="Contraseña" type="password" variant="outlined" />
 
             <Button className="button--global" 
                 sx={{ borderRadius: '10px', marginTop: '10px' }} onClick={onSubmit}
             >
-                Enviar
+                Registrar
             </Button>
         </CustomerAuth>
     )
