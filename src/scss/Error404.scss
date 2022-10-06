@@ -1,0 +1,38 @@
+@import 'src/variables.scss';
+
+.error404 {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .error404__content {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .error404__title {
+            font-size: 40px;
+        }
+
+        .error404__desc {
+            color: $text-gray;
+            font-size: 20px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .error404__image {
+            margin: 30px 0;
+        }
+
+        .button--go-home {
+            width: 30%;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+    }
+}
