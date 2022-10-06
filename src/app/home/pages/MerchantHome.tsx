@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, Fade, Modal, TextField } from "@mui/material";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Footer } from "../../../components";
+import { MerchantBegin, MerchantLogin } from "../../auth/pages";
 import { MerchantCardInfo, MerchantHeader, MerchantSwiperContent } from "../components";
 import { merchantBanner } from "../../../assets/images";
 
@@ -13,9 +14,16 @@ export const MerchantHome = () => {
         element: {} as JSX.Element
     });
 
+    const openModal = (el: string) => {
+        setOptionsModal({
+            open: true,
+            element: el === 'login' ? <MerchantLogin /> : <MerchantBegin />
+        });
+    }
+
     return (
         <main className="merchant-home">
-            <MerchantHeader action={console.log}></MerchantHeader>
+            <MerchantHeader action={openModal}></MerchantHeader>
 
             <section className="merchant-home__content">
                 <div className="content__topSection">
@@ -38,7 +46,7 @@ export const MerchantHome = () => {
                             <div className="topSection__info-action">
                                 <Button
                                     className="button--round button--begin"
-                                    onClick={console.log}
+                                    onClick={() => openModal('begin')}
                                 >
                                     Comenzar
                                 </Button>
@@ -144,9 +152,9 @@ export const MerchantHome = () => {
 
             <Footer></Footer>
 
-            {/* <Modal
+            <Modal
                 open={optionsModal.open}
-                onClose={() => setOptionsModal({ ...optionsModal, open: false })}
+                onClose={() => setOptionsModal({ open: false, element: {} as JSX.Element })}
                 classes={{
                     root: 'merchant-home__modal'
                 }}
@@ -155,7 +163,7 @@ export const MerchantHome = () => {
                     style={{
                         width: '90%',
                         height: '90%',
-                        maxHeight: 800
+                        maxHeight: 800,
                     }}
                 >
                     <Fade in={optionsModal.open}>
@@ -169,7 +177,7 @@ export const MerchantHome = () => {
                         </div>
                     </Fade>
                 </div>
-            </Modal> */}
+            </Modal>
         </main>
     )
 }
