@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { buildRoute } from "../pipes";
-import { MerchantProductos } from "../screen";
+import { MerchantProductos } from "../screens";
 
 type Props = {
     setTitulo: Function;
