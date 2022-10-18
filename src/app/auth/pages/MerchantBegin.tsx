@@ -1,8 +1,25 @@
 import { CheckCircle } from "@mui/icons-material";
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
+
+import { useForm } from "../../../hooks";
 import { MerchantAuth } from "../layouts";
 
 export const MerchantBegin = () => {
+
+    const { formState, onInputChange } = useForm({
+        NIT: '',
+        nombre: '',
+        direccion: '',
+        especialidad: '',
+        telefono: '',
+        email: '',
+        password: ''
+    });
+
+    const onSubmit = () => {
+        console.log(formState);
+    }
+
     return (
         <MerchantAuth
             title="¡Únete ahora y haz crecer las ventas de tu restaurante!"
@@ -10,7 +27,7 @@ export const MerchantBegin = () => {
             bannerInfo={
                 <>
                     <h1 className="info__title">Registra tu restaurante</h1>
-                    <p className="info__desc">Recibe además otros beneficios cómo:</p>
+                    <p  className="info__desc">Recibe además otros beneficios cómo:</p>
                     <ul className="info__list">
                         <li className="info__list-item">
                             <CheckCircle />
@@ -28,48 +45,32 @@ export const MerchantBegin = () => {
                 </>
             }
         >
-            <TextField
-                label="Nombre del Restaurante *"
-                className="form__content-textfield"
-            />
-            <TextField
-                label="Dirección del Restaurante *"
-            />
-            <TextField
-                label="Especialidad"
-                fullWidth
-            />
-            <div
-                className="form__content-name"
-                style={{
+            <TextField onChange={onInputChange} value={formState.NIT} name="NIT" type="number"
+                label="NIT *" variant="outlined" fullWidth />
+            <TextField onChange={onInputChange} value={formState.nombre} name="nombre" type="text"
+                label="Nombre del Restaurante *" variant="outlined" fullWidth />
+            <TextField onChange={onInputChange} value={formState.direccion} name="direccion" type="text"
+                label="Dirección del Restaurante *" variant="outlined" fullWidth />
+            <Box
+                sx={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    gap: 10
+                    gap: '15px'
                 }}
             >
-                <TextField
-                    label="Nombre(s) *"
-                    fullWidth
-                />
-                <TextField
-                    label="Apellido(s) *"
-                    fullWidth
-                />
-            </div>
-            <TextField
-                label="Correo Electrónico *"
-                fullWidth
-            />
-            <TextField
-                label="Contraseña *"
-                fullWidth
-            />
+                <TextField onChange={onInputChange} value={formState.especialidad} name="especialidad" type="text"
+                    label="Especialidad *" variant="outlined" fullWidth />
+                <TextField onChange={onInputChange} value={formState.telefono} name="telefono" type="number"
+                    label="Teléfono *" variant="outlined" fullWidth />
+            </Box>
+            <TextField onChange={onInputChange} value={formState.email} name="email" type="email"
+                label="Correo Electrónico *" variant="outlined" fullWidth />
+            <TextField onChange={onInputChange} value={formState.password} name="password" type="password"
+                label="Contraseña *" variant="outlined" fullWidth />
             <Button
-                variant="contained"
-                size="large"
                 className="button--global"
-                sx={{ marginTop: '25px', borderRadius: '10px' }}
+                sx={{ marginTop: '25px', borderRadius: '10px' }} onClick={onSubmit}
             >
                 Enviar
             </Button>

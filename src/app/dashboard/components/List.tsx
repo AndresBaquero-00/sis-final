@@ -1,14 +1,15 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 type Props = {
+    title: string;
     header: string[];
     rows: string[][];
 }
 
-export const List = ({ header, rows }: Props) => {
+export const List = ({ title, header, rows }: Props) => {
     return (
         <div className="list">
-            <h1 className="list__title">Productos Registrados</h1>
+            <h1 className="list__title">{ title }</h1>
             <TableContainer component="div">
                 <Table className="list__table">
                     <TableHead>

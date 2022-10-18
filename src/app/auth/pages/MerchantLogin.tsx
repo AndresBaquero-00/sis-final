@@ -1,10 +1,21 @@
+import { MouseEvent } from "react";
 import { Business, Paid, RestaurantMenu } from "@mui/icons-material";
 import { Button, TextField } from "@mui/material";
+import { useForm } from "../../../hooks";
 
 import { MerchantAuth } from "../layouts";
 
 export const MerchantLogin = () => {
-    const onSubmit = () => {}
+
+    const { formState, onInputChange } = useForm({
+        email: '',
+        password: ''
+    });
+
+    const onSubmit = (e: MouseEvent) => {
+        // e.preventDefault();
+        console.log(formState);
+    }
 
     return (
         <MerchantAuth
@@ -30,11 +41,11 @@ export const MerchantLogin = () => {
                 </>
             }
         >
-            <TextField label="Correo Electrónico" />
-            <TextField label="Contraseña" />
+            <TextField onChange={onInputChange} value={formState.email} name="email" type="email"
+                label="Correo Electrónico" fullWidth/>
+            <TextField onChange={onInputChange} value={formState.password} name="password" type="password"
+                label="Contraseña" fullWidth/>
             <Button
-                variant="contained"
-                size="large"
                 className="button--global"
                 onClick={onSubmit}
                 href="/merchant/dashboard"

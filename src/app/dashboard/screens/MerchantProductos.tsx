@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Fab } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Fab, Grow, Modal } from "@mui/material";
 import { Add } from "@mui/icons-material";
 
 import { List } from "../components";
@@ -9,6 +9,9 @@ type Props = {
 }
 
 export const MerchantProductos = ({ setTitulo }: Props) => {
+
+    const [modal, setModal] = useState(false);
+
     useEffect(() => {
         setTitulo('Productos');
     });
@@ -16,6 +19,7 @@ export const MerchantProductos = ({ setTitulo }: Props) => {
     return (
         <section className="content__productos">
             <List
+                title="Productos Registrados"
                 header={['Seller', 'Product', 'Country', 'Total', 'Rank']}
                 rows={
                     [
@@ -26,9 +30,39 @@ export const MerchantProductos = ({ setTitulo }: Props) => {
                 }
             ></List>
 
-            <Fab aria-label="add" className="button--fab">
+            <Fab aria-label="add" className="button--fab" onClick={() => setModal(true)}>
                 <Add />
             </Fab>
+
+            <Modal
+                open={modal}
+                onClose={() => setModal(false)}
+                classes={{
+                    root: 'dashboard__modal'
+                }}
+            >
+                <Box
+                    sx={{
+                        width: '90%',
+                        height: '90%',
+                        maxHeight: '800px',
+                    }}
+                >
+                    <Grow in={modal}>
+                        <Box
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                background: 'white'
+                            }}
+                        >
+                            <form>
+                                
+                            </form>
+                        </Box>
+                    </Grow>
+                </Box>
+            </Modal>
         </section>
     )
 }

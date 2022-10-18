@@ -2,6 +2,7 @@ import { Button, TextField } from "@mui/material";
 
 import { useForm } from "../../../hooks";
 import { CustomerAuth } from "../layouts";
+import { illustrationLogin } from "../../../assets/images";
 
 export const CustomerLogin = () => {
     const { formState, onInputChange } = useForm({
@@ -16,7 +17,7 @@ export const CustomerLogin = () => {
     return (
         <CustomerAuth
             title="Inicia Sesión"
-            bannerImage="https://minimals.cc/assets/illustrations/illustration_login.png"
+            bannerImage={illustrationLogin}
             bannerTitle="Hi, Welcome Back!"
             notAction={
                 <span>
