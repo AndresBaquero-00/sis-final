@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 
+import { useTitle } from "../../../hooks";
 import { MerchantSidebar } from "../components";
 import { MerchantDashboardRoutes } from "../routes";
 
 export const MerchantDashboard = () => {
+    useTitle('Dashboard');
     const [title, setTitle] = useState('Merchant Dashboard');
 
     return (

@@ -11,8 +11,7 @@ type Props = {
     setTitulo: Function;
 }
 
-export const MerchantProductos = ({ setTitulo }: Props) => {
-
+export const MerchantIngredientes = ({ setTitulo }: Props) => {
     const [modal, setModal] = useState(false);
     const [nombreArchivo, setNombreArchivo] = useState('No hay archivos seleccionados');
     const { formState, onInputChange, onResetForm } = useForm({
@@ -23,7 +22,7 @@ export const MerchantProductos = ({ setTitulo }: Props) => {
     });
 
     useEffect(() => {
-        setTitulo('Productos');
+        setTitulo('Ingredientes');
     });
 
     const closeModal = () => {
@@ -39,20 +38,14 @@ export const MerchantProductos = ({ setTitulo }: Props) => {
     return (
         <section className="content__productos">
             <List
-                title="Productos Registrados"
+                title="Ingredientes Registrados"
                 header={['Nombre', 'Descripción', 'Precio', 'Imagen']}
                 posImages={3}
                 rows={
                     [
-                        ['Corral Todoterreno Clásica', 'Hamburguesa de dos carnes de 125 g cada una de res a la parrilla con salsa BBQ, queso tipo mozzarella, lechuga, tomate, cebolla, salsa blanca, salsa de tomate y mostaza en pan ajonjolí', '$35.500', 'https://images.rappi.com/products/2094628730-1648486366377.jpg?e=webp&d=800x800&q=80'],
-                        ['Vaquero Especial', 'Perro caliente con salchicha a la parrilla, queso tipo mozzarella, tocineta, papa callejera, cebolla picada, salsa blanca, salsa de tomate y mostaza en pan perro', '$31.500', 'https://images.rappi.com/products/2093138497-1664837538855.jpg?e=webp&d=800x800&q=80'],
-                        ['Corral Callejera', 'Hamburguesa de 125 g de carne 100% de res, una tajada de queso tipo mozzarella, papas callejera, salsa blanca, salsa de tomate y mostaza en pan ajonjolí', '$22.000', 'https://images.rappi.com/products/2089983118-1643732108230.jpg?e=webp&d=800x800&q=80'],
-                        ['Corral Todoterreno Clásica', 'Hamburguesa de dos carnes de 125 g cada una de res a la parrilla con salsa BBQ, queso tipo mozzarella, lechuga, tomate, cebolla, salsa blanca, salsa de tomate y mostaza en pan ajonjolí', '$35.500', 'https://images.rappi.com/products/2094628730-1648486366377.jpg?e=webp&d=800x800&q=80'],
-                        ['Vaquero Especial', 'Perro caliente con salchicha a la parrilla, queso tipo mozzarella, tocineta, papa callejera, cebolla picada, salsa blanca, salsa de tomate y mostaza en pan perro', '$31.500', 'https://images.rappi.com/products/2093138497-1664837538855.jpg?e=webp&d=800x800&q=80'],
-                        ['Corral Callejera', 'Hamburguesa de 125 g de carne 100% de res, una tajada de queso tipo mozzarella, papas callejera, salsa blanca, salsa de tomate y mostaza en pan ajonjolí', '$22.000', 'https://images.rappi.com/products/2089983118-1643732108230.jpg?e=webp&d=800x800&q=80'],
-                        ['Corral Todoterreno Clásica', 'Hamburguesa de dos carnes de 125 g cada una de res a la parrilla con salsa BBQ, queso tipo mozzarella, lechuga, tomate, cebolla, salsa blanca, salsa de tomate y mostaza en pan ajonjolí', '$35.500', 'https://images.rappi.com/products/2094628730-1648486366377.jpg?e=webp&d=800x800&q=80'],
-                        ['Vaquero Especial', 'Perro caliente con salchicha a la parrilla, queso tipo mozzarella, tocineta, papa callejera, cebolla picada, salsa blanca, salsa de tomate y mostaza en pan perro', '$31.500', 'https://images.rappi.com/products/2093138497-1664837538855.jpg?e=webp&d=800x800&q=80'],
-                        ['Corral Callejera', 'Hamburguesa de 125 g de carne 100% de res, una tajada de queso tipo mozzarella, papas callejera, salsa blanca, salsa de tomate y mostaza en pan ajonjolí', '$22.000', 'https://images.rappi.com/products/2089983118-1643732108230.jpg?e=webp&d=800x800&q=80'],
+                        ['Cebolla', '5 rodajas de cebolla morada encurtida.', '$6.500', 'https://kreef.com/wp-content/uploads/2020/07/cebolla-morada-curtida.jpg'],
+                        ['Carne 150g', 'Carne de res a la parrilla.', '$11.000', 'https://thumbs.dreamstime.com/b/carne-recientemente-asada-la-parrilla-de-hamburguesa-117778726.jpg'],
+                        ['Tocineta', 'Porción de tocineta de 50g.', '$8.000', 'https://bootlaceinc.com/wp-content/uploads/2021/04/Tocino.png'],
                     ]
                 }
             ></List>
@@ -76,12 +69,12 @@ export const MerchantProductos = ({ setTitulo }: Props) => {
                 >
                     <ModalLayout openModal={modal} closeModal={closeModal}>
                         <form onSubmit={onSubmit}>
-                            <h1 className="dashboard__form-title">Ingresar un nuevo producto</h1>
+                            <h1 className="dashboard__form-title">Ingresar un nuevo ingrediente</h1>
                             <TextField name="nombre" type="text" className="dashboard__form-textfield"
-                                label="Nombre del Producto" value={formState.nombre}
+                                label="Nombre del Ingrediente" value={formState.nombre}
                                 onChange={onInputChange} fullWidth />
                             <TextField name="descripcion" type="text" className="dashboard__form-textfield"
-                                rows="5" label="Descripción del Producto" multiline
+                                rows="5" label="Descripción del Ingrediente" multiline
                                 value={formState.descripcion} onChange={onInputChange} fullWidth />
                             <Box
                                 sx={{
@@ -92,7 +85,7 @@ export const MerchantProductos = ({ setTitulo }: Props) => {
                                 }}
                             >
                                 <TextField name="precio" sx={{ flex: '1' }} type="number" className="dashboard__form-textfield"
-                                    label="Precio del Producto" value={formState.precio}
+                                    label="Precio del Ingrediente" value={formState.precio}
                                     onChange={onInputChange} fullWidth />
                                 <IconButton className="button--upload" sx={{ flex: '1' }} aria-label="Cargar Fotografía" component="label">
                                     <PhotoCamera />

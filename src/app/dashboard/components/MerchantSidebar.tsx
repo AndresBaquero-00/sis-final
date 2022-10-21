@@ -46,7 +46,7 @@ export const MerchantSidebar = ({ name }: Props) => {
                     <SidebarItem icon={<Dashboard />} desc="Ordenes" /> 
                     <SidebarItem icon={<MenuBook />} desc="Menú/Carta" />
                     <SidebarItem icon={<LunchDining />} desc="Productos" href={buildRoute('/productos')} />
-                    <SidebarItem icon={<Egg />} desc="Ingredientes" />
+                    <SidebarItem icon={<Egg />} desc="Ingredientes" href={buildRoute('/ingredientes')} />
                     <SidebarItem icon={<Sell />} desc="Marketing" />
                 </ul>
 

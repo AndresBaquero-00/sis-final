@@ -3,12 +3,15 @@ import { Button, Fade, Modal, TextField } from "@mui/material";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { useTitle } from "../../../hooks";
 import { Footer } from "../../../components";
 import { MerchantBegin, MerchantLogin } from "../../auth/pages";
 import { MerchantCardInfo, MerchantHeader, MerchantSwiperContent } from "../components";
 import { merchantBanner } from "../../../assets/images";
 
 export const MerchantHome = () => {
+    useTitle('Únete a nosotros - CCD para Restaurantes');
+
     const [optionsModal, setOptionsModal] = useState({
         open: false,
         element: {} as JSX.Element

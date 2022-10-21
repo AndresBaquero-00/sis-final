@@ -32,6 +32,16 @@ html {
     min-height: 100vh;
 }
 
+.dashboard__form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 900;
+}
+
+.dashboard__form-textfield {
+    margin: 10px 0 !important;
+}
+
 .MuiTextField-root {
     & label.Mui-focused {
         color: $main-color;
@@ -62,6 +72,19 @@ html {
     text-transform: capitalize !important;
 }
 
+.button--upload {
+    background-color: $secondary-color !important;
+    box-shadow: 0 10px 15px 0 rgba($color: $secondary-color, $alpha: 25%) !important;
+    padding: 15px 15px !important;
+    color: white !important;
+    border-radius: $border-radius !important;
+
+    p {
+        font-size: 15px;
+        margin-left: 10px;
+    }
+}
+
 .button--google,
 .button--apple {
     border-radius: $border-radius !important;
@@ -86,6 +109,14 @@ html {
     bottom: 50px !important;
     right: 30px !important;
     color: white !important;
+}
+
+.button--close {
+    position: absolute !important;
+    right: -100px;
+    top: -20px;
+    background-color: white !important;
+    color: black !important;
 }
 
 

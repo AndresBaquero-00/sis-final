@@ -1,5 +1,6 @@
 import { Button, Card, CardActions, CardContent, CardMedia } from "@mui/material";
 
+import { useTitle } from "../../../hooks";
 import { Footer } from "../../../components";
 import { ciudades } from "../../../data";
 import { CustomerHeader } from "../components";
@@ -8,6 +9,7 @@ import { CustomerHeader } from "../components";
 const imageTopSection = 'https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80';
 
 export const CustomerHome = () => {
+    useTitle('Pide comida a domicilio - CCD');
     return (
         <main className="customer-home">
             <CustomerHeader></CustomerHeader>

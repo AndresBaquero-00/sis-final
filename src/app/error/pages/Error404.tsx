@@ -1,10 +1,11 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+import { useTitle } from "../../../hooks";
 import { GirlDoubting } from "../../../assets/images";
 
 export const Error404 = () => {
-
+    useTitle('404');
     const navigate = useNavigate();
 
     return (

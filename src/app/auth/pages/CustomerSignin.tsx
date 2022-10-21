@@ -1,10 +1,11 @@
 import { Button, TextField } from "@mui/material";
 
-import { useForm } from "../../../hooks";
+import { useForm, useTitle } from "../../../hooks";
 import { CustomerAuth } from "../layouts";
 import { illustrationRegister } from "../../../assets/images";
 
 export const CustomerSignin = () => {
+    useTitle('Registrarse');
     const { formState, onInputChange } = useForm({
         cedula: '',
         nombre: '',

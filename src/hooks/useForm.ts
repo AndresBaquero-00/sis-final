@@ -7,7 +7,17 @@ export const useForm = <T>(initialForm: T) => {
         setFormState(initialForm);
     }
 
-    const onInputChange = ({ currentTarget }: ChangeEvent<HTMLInputElement>) => {
+    const onInputChange = ({ currentTarget }: ChangeEvent<HTMLInputElement>, isFile?: boolean) => {
+        if (isFile) {
+            const { name, files } = currentTarget;
+            setFormState({
+                ...formState,
+                [name]: files?.item(0)
+            });
+
+            return;
+        }
+
         const { name, value } = currentTarget;
         setFormState({
             ...formState,

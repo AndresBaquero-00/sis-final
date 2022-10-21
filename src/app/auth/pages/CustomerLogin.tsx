@@ -1,10 +1,11 @@
 import { Button, TextField } from "@mui/material";
 
-import { useForm } from "../../../hooks";
+import { useForm, useTitle } from "../../../hooks";
 import { CustomerAuth } from "../layouts";
 import { illustrationLogin } from "../../../assets/images";
 
 export const CustomerLogin = () => {
+    useTitle('Iniciar Sesión');
     const { formState, onInputChange } = useForm({
         email: '',
         password: ''

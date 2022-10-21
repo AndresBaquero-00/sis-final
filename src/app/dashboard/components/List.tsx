@@ -4,9 +4,10 @@ type Props = {
     title: string;
     header: string[];
     rows: string[][];
+    posImages?: number;
 }
 
-export const List = ({ title, header, rows }: Props) => {
+export const List = ({ title, header, rows, posImages }: Props) => {
     return (
         <div className="list">
             <h1 className="list__title">{ title }</h1>
@@ -26,8 +27,13 @@ export const List = ({ title, header, rows }: Props) => {
                             rows.map(row => (
                                 <TableRow>
                                     {
-                                        row.map(column => (
-                                            <TableCell align="left" className="table__cell-body">{column}</TableCell>
+                                        row.map((column, index) => (
+                                            <TableCell align="left" className="table__cell-body">
+                                                {
+                                                    posImages && index === posImages 
+                                                    ? <img src={column} alt="foto" />:column
+                                                }
+                                            </TableCell>
                                         ))
                                     }
                                 </TableRow>
