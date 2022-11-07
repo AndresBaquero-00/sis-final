@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
 
-export const useForm = <T>(initialForm: T) => {
+export const useForm = <T extends Object>(initialForm: T) => {
     const [formState, setFormState] = useState(initialForm);
 
     const onResetForm = () => {
@@ -29,5 +29,8 @@ export const useForm = <T>(initialForm: T) => {
         formState,
         onInputChange,
         onResetForm,
+        isInvalidForm: Object.values(formState).some(value => (
+            String(value) === ''
+        ))
     }
 }

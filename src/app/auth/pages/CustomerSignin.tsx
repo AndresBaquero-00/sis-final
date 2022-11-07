@@ -1,12 +1,16 @@
-import { Button, TextField } from "@mui/material";
+import { useMemo, useState } from "react";
+import { Alert, Button, Snackbar, TextField } from "@mui/material";
 
-import { useForm, useTitle } from "../../../hooks";
-import { CustomerAuth } from "../layouts";
+import { useForm, useNavigate, useTitle } from "../../../hooks";
+import { CustomerService } from "../../../services";
 import { illustrationRegister } from "../../../assets/images";
+import { CustomerAuth } from "../layouts";
 
 export const CustomerSignin = () => {
     useTitle('Registrarse');
-    const { formState, onInputChange } = useForm({
+    const navigate = useNavigate();
+    const customerService = useMemo(() => new CustomerService(), []);
+    const { formState, onInputChange, isInvalidForm, onResetForm } = useForm({
         cedula: '',
         nombre: '',
         apellido: '',
@@ -14,9 +18,29 @@ export const CustomerSignin = () => {
         email: '',
         password: ''
     });
-
+    const [configToast, setConfigToast] = useState({
+        open: false,
+        message: ''
+    });
+    const closeToast = () => {
+        onResetForm();
+        setConfigToast({
+            open: false,
+            message: ''
+        });
+    }
     const onSubmit = () => {
-        console.log(formState);
+        const customer = customerService.parse(formState);
+        customerService.registrar(customer)
+            .then(() => {
+                navigate('/customer/home');
+            }).catch(error => {
+                onResetForm();
+                setConfigToast({
+                    open: true,
+                    message: String(error)
+                });
+            });
     }
 
     return (
@@ -31,24 +55,30 @@ export const CustomerSignin = () => {
                 </span>
             }
         >
-            <TextField onChange={onInputChange} value={formState.cedula} 
+            <TextField onChange={onInputChange} value={formState.cedula}
                 name="cedula" label="Cédula" type="number" variant="outlined" />
-            <TextField onChange={onInputChange} value={formState.nombre} 
+            <TextField onChange={onInputChange} value={formState.nombre}
                 name="nombre" label="Nombre" type="text" variant="outlined" />
-            <TextField onChange={onInputChange} value={formState.apellido} 
+            <TextField onChange={onInputChange} value={formState.apellido}
                 name="apellido" label="Apellido" type="text" variant="outlined" />
-            <TextField onChange={onInputChange} value={formState.telefono} 
+            <TextField onChange={onInputChange} value={formState.telefono}
                 name="telefono" label="Teléfono" type="number" variant="outlined" />
-            <TextField onChange={onInputChange} value={formState.email} 
+            <TextField onChange={onInputChange} value={formState.email}
                 name="email" label="Email" type="email" variant="outlined" />
-            <TextField onChange={onInputChange} value={formState.password} 
+            <TextField onChange={onInputChange} value={formState.password}
                 name="password" label="Contraseña" type="password" variant="outlined" />
 
-            <Button className="button--global" 
+            <Button className="button--global" disabled={isInvalidForm}
                 sx={{ borderRadius: '10px', marginTop: '10px' }} onClick={onSubmit}
             >
                 Registrar
             </Button>
+
+            <Snackbar open={configToast.open} autoHideDuration={2500} onClose={closeToast}>
+                <Alert onClose={closeToast} severity="error" sx={{ width: '100%' }}>
+                    {configToast.message}
+                </Alert>
+            </Snackbar>
         </CustomerAuth>
     )
 }

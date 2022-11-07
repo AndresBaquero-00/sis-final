@@ -1,18 +1,41 @@
-import { Button, TextField } from "@mui/material";
+import { useState, useMemo } from "react";
+import { Alert, Button, Snackbar, TextField } from "@mui/material";
 
-import { useForm, useTitle } from "../../../hooks";
-import { CustomerAuth } from "../layouts";
+import { CustomerService } from "../../../services";
+import { useForm, useNavigate, useTitle } from "../../../hooks";
 import { illustrationLogin } from "../../../assets/images";
+import { CustomerAuth } from "../layouts";
 
 export const CustomerLogin = () => {
     useTitle('Iniciar Sesión');
-    const { formState, onInputChange } = useForm({
+    const navigate = useNavigate();
+    const customerService = useMemo(() => new CustomerService(), []);
+    const { formState, onInputChange, onResetForm } = useForm({
         email: '',
         password: ''
     });
-
+    const [configToast, setConfigToast] = useState({
+        open: false,
+        message: ''
+    });
+    const closeToast = () => {
+        onResetForm();
+        setConfigToast({
+            open: false,
+            message: ''
+        });
+    }
     const onSubmit = () => {
-        console.log(formState);
+        customerService.iniciarSesion(formState)
+            .then(() => {
+                navigate('/merchant/home');
+            }).catch(error => {
+                onResetForm();
+                setConfigToast({
+                    open: true,
+                    message: String(error)
+                });
+            })
     }
 
     return (
@@ -37,6 +60,12 @@ export const CustomerLogin = () => {
             >
                 Enviar
             </Button>
+
+            <Snackbar open={configToast.open} autoHideDuration={2500} onClose={closeToast}>
+                <Alert onClose={closeToast} severity="error" sx={{ width: '100%' }}>
+                    {configToast.message}
+                </Alert>
+            </Snackbar>
         </CustomerAuth>
     )
 }

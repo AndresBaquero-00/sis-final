@@ -1,12 +1,15 @@
+import { useMemo, useState } from "react";
+import { Alert, Box, Button, Snackbar, TextField } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
-import { Box, Button, TextField } from "@mui/material";
 
-import { useForm } from "../../../hooks";
+import { useForm, useNavigate } from "../../../hooks";
+import { MerchantService } from "../../../services";
 import { MerchantAuth } from "../layouts";
 
 export const MerchantBegin = () => {
-
-    const { formState, onInputChange } = useForm({
+    const navigate = useNavigate();
+    const merchantService = useMemo(() => new MerchantService(), []);
+    const { formState, onInputChange, isInvalidForm, onResetForm } = useForm({
         NIT: '',
         nombre: '',
         direccion: '',
@@ -15,9 +18,29 @@ export const MerchantBegin = () => {
         email: '',
         password: ''
     });
-
+    const [configToast, setConfigToast] = useState({
+        open: false,
+        message: ''
+    });
+    const closeToast = () => {
+        onResetForm();
+        setConfigToast({
+            open: false,
+            message: ''
+        });
+    }
     const onSubmit = () => {
-        console.log(formState);
+        const merchant = merchantService.parse(formState);
+        merchantService.registrar(merchant)
+            .then(() => {
+                navigate('/merchant/home');
+            }).catch(error => {
+                onResetForm();
+                setConfigToast({
+                    open: true,
+                    message: String(error)
+                });
+            });
     }
 
     return (
@@ -68,12 +91,17 @@ export const MerchantBegin = () => {
                 label="Correo Electrónico *" variant="outlined" fullWidth />
             <TextField onChange={onInputChange} value={formState.password} name="password" type="password"
                 label="Contraseña *" variant="outlined" fullWidth />
-            <Button
-                className="button--global"
-                sx={{ marginTop: '25px', borderRadius: '10px' }} onClick={onSubmit}
+            <Button className="button--global" sx={{ marginTop: '25px', borderRadius: '10px' }} 
+                onClick={onSubmit} disabled={isInvalidForm}
             >
                 Enviar
             </Button>
+
+            <Snackbar open={configToast.open} autoHideDuration={2500} onClose={closeToast}>
+                <Alert onClose={closeToast} severity="error" sx={{ width: '100%' }}>
+                    {configToast.message}
+                </Alert>
+            </Snackbar>
         </MerchantAuth>
     )
 }

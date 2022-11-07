@@ -1,20 +1,47 @@
-import { MouseEvent } from "react";
+import { useMemo, useState } from "react";
+import { Alert, Button, Snackbar, TextField } from "@mui/material";
 import { Business, Paid, RestaurantMenu } from "@mui/icons-material";
-import { Button, TextField } from "@mui/material";
-import { useForm } from "../../../hooks";
 
+import { useForm, useNavigate } from "../../../hooks";
+import { MerchantService } from "../../../services";
 import { MerchantAuth } from "../layouts";
 
 export const MerchantLogin = () => {
-
-    const { formState, onInputChange } = useForm({
+    const navigate = useNavigate();
+    const merchantService = useMemo(() => new MerchantService(), []);
+    const { formState, onInputChange, onResetForm } = useForm({
         email: '',
         password: ''
     });
+    const [configToast, setConfigToast] = useState({
+        open: false,
+        message: ''
+    });
+    const closeToast = () => {
+        onResetForm();
+        setConfigToast({
+            open: false,
+            message: ''
+        });
+    }
+    const onSubmit = () => {
+        merchantService.iniciarSesion(formState)
+        .then(() => {
+            navigate('/merchant/dashboard');
+        }).catch(error => {
+            setConfigToast({
+                open: true,
+                message: String(error)
+            });
+        });
+    }
 
-    const onSubmit = (e: MouseEvent) => {
-        // e.preventDefault();
-        console.log(formState);
+    if (merchantService.estaIniciado()) {
+        navigate('/merchant/dashboard');
+        return (
+            <>
+            </>
+        );
     }
 
     return (
@@ -45,14 +72,17 @@ export const MerchantLogin = () => {
                 label="Correo Electrónico" fullWidth/>
             <TextField onChange={onInputChange} value={formState.password} name="password" type="password"
                 label="Contraseña" fullWidth/>
-            <Button
-                className="button--global"
-                onClick={onSubmit}
-                href="/merchant/dashboard"
-                sx={{ marginTop: '25px', borderRadius: '10px' }}
+            <Button className="button--global"
+                sx={{ marginTop: '25px', borderRadius: '10px' }} onClick={onSubmit}
             >
                 Enviar
             </Button>
+
+            <Snackbar open={configToast.open} autoHideDuration={2500} onClose={closeToast}>
+                <Alert onClose={closeToast} severity="error" sx={{ width: '100%' }}>
+                    {configToast.message}
+                </Alert>
+            </Snackbar>
         </MerchantAuth>
     )
 }
